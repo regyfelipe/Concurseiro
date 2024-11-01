@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Ver Questões</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+        .sidebar {
+            width: 200px;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            border-right: 1px solid #dee2e6;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar .logo {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar .nav-link {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+        }
+        
+        .sidebar .nav-link:hover {
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        
+        .main-content {
+            margin-left: 200px;
+            width: calc(100% - 200px);
+            padding: 20px;
+        }
+        
+        </style>
+        
+        <body>
+        
+            <aside class="sidebar">
+                <div class="text-center mb-4">
+                    <img src="path/to/your/logo.svg" alt="Logo" class="logo img-fluid">
+                </div>
+                <nav class="nav flex-column">
+                    <a href="/" class="nav-link">Criar Questões</a>
+                    <a href="/view-questions" class="nav-link">Ver Questões</a>
+                </nav>
+                
+            </aside>
+<body>
+    <div class="container mt-5">
+        <h3 class="text-center mb-4">Visualização das Questões</h3>
+        <div id="questions-container" class="row">
+        </div>
+    </div>
+
+    <script>
+        async function fetchQuestions() {
+            try {
+                const response = await fetch('/api/questions');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const questions = await response.json();
+
+                const questionsContainer = document.getElementById('questions-container');
+                questionsContainer.innerHTML = '';
+
+                questions.forEach(question => {
+                    const questionCard = document.createElement('div');
+                    questionCard.className = "col-md-6 mb-4";
+                    questionCard.innerHTML = `
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">${question.disciplina} | ${question.assunto} | ${question.banca} | ${question.instituicao} | ${question.nivel}</h5>
+                                <p class="card-text" id="view-aux-text">${question.textoAux || ""}</p>
+                                <p class="card-text"><strong>Pergunta:</strong> <span id="view-pergunta">${question.pergunta}</span></p>
+                                <form id="view-alternatives" class="mb-3">
+                                    ${question.alternatives.map(alt => `
+                                        <label class="d-flex align-items-center mb-2">
+                                            <div class="option-circle">
+                                                <input type="radio" class="form-check-input" name="options" value="${alt.label}" disabled>
+                                                <span class="q-option-item">${alt.label}</span>
+                                            </div>
+                                            <span class="option-text">${alt.text}</span>
+                                        </label>
+                                    `).join('')}
+                                </form>
+                                <p class="card-text"><strong>Alternativa Correta:</strong> <span class="correct-answer" id="view-correct-answer">${question.correctAnswer || "Nenhuma selecionada"}</span></p>
+                            </div>
+                        </div>
+                    `;
+                    questionsContainer.appendChild(questionCard);
+                });
+            } catch (error) {
+                console.error('Erro ao buscar as questões:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchQuestions);
+    </script>
+</body>
+</html>

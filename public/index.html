@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concurseiro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+
+.sidebar {
+    width: 200px;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-right: 1px solid #dee2e6;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo {
+    max-width: 100px;
+    margin-bottom: 20px;
+}
+
+.sidebar .nav-link {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+    padding: 20px;
+}
+
+</style>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="text-center mb-4">
+            <img src="path/to/your/logo.svg" alt="Logo" class="logo img-fluid">
+        </div>
+        <nav class="nav flex-column">
+            <a href="/" class="nav-link">Criar Questões</a>
+            <a href="/view-questions" class="nav-link">Ver Questões</a>
+        </nav>
+        
+    </aside>
+
+    <div class="main-content">
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" id="banca" class="form-control" placeholder="Banca">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" id="instituicao" class="form-control" placeholder="Instituição">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" id="prova" class="form-control" placeholder="Prova">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" id="nivel" class="form-control" placeholder="Nível">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" id="disciplina" class="form-control" placeholder="Disciplina">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" id="assunto" class="form-control" placeholder="Assunto">
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-3">
+                        <button id="text-aux-btn" class="btn btn-outline-secondary me-2">Texto auxiliar</button>
+                        <button id="image-aux-btn" class="btn btn-outline-secondary">Imagem auxiliar</button>
+                    </div>
+                    
+                    <div id="text-aux-field" class="mb-3" style="display: none;">
+                        <input type="text" id="textoAux" class="form-control" placeholder="Digite o texto auxiliar">
+                    </div>
+                    <div id="image-aux-field" class="mb-3" style="display: none;">
+                        <input type="file" id="imagemAux" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" id="pergunta" class="form-control" placeholder="Pergunta">
+                    </div>
+
+                    <div id="alternatives-section">
+                        <div class="alternative mb-3" data-option="A">
+                            <span class="option-label">A</span>
+                            <input type="text" class="form-control alternative-input">
+                        </div>
+                        <div class="alternative mb-3" data-option="B">
+                            <span class="option-label">B</span>
+                            <input type="text" class="form-control alternative-input">
+                        </div>
+                    </div>
+                    <button id="add-alternative-btn" class="btn btn-outline-secondary">Adicionar mais uma alternativa</button>
+
+                    <div class="mb-3">
+                        <label for="correct-answer" class="form-label">Selecione a Alternativa Correta:</label>
+                        <select id="correct-answer" class="form-select">
+                            <option value="">Escolha uma opção</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="explanation" class="form-label">Explicação ou Código (Opcional):</label>
+                        <textarea id="explanation" class="form-control" rows="3" placeholder="Digite sua explicação ou código aqui"></textarea>
+                    </div>
+
+                    <button id="create-question-btn" class="btn btn-primary">Criar Questão</button>
+
+                </div>
+
+                <div class="col-md-6 view-section">
+                    <h3 class="text-center">View das Questões</h3>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title" id="view-title">Disciplina | Assunto | Banca | Instituição | Nível</h5>
+                            <p class="card-text" id="view-aux-text"></p>
+                            <p class="card-text"><strong>Pergunta:</strong> <span id="view-pergunta"></span></p>
+                            <form id="view-alternatives"></form>
+                            <p class="card-text"><strong>Alternativa Correta:</strong> <span id="view-correct-answer">Nenhuma selecionada</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="script.js"></script>
+
+</body>
+
+</html>
