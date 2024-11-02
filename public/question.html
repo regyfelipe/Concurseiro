@@ -63,7 +63,6 @@
         <div class="logo-container">
             <img src="./images/logo.png" alt="Logo" class="logo">
         </div>
-        <!-- Menu de Navegação -->
         <nav class="nav-menu" id="nav-menu">
             <a href="/" class="nav-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-patch-question-fill" viewBox="0 0 16 16">
@@ -75,7 +74,6 @@
             <a href="/create-simulate" class="nav-link">Criar Simulados</a>
             <a href="/profile" class="nav-link">Perfil</a>
         </nav>
-        <!-- Ícone de Menu Hamburguer -->
         <div class="hamburger-menu" onclick="toggleMenu()">
             <div></div>
             <div></div>
@@ -152,7 +150,7 @@
                 });
                 if (!response.ok) throw new Error('Erro ao excluir a questão');
                 alert('Questão excluída com sucesso!');
-                fetchQuestions(); // Refresh the question list
+                fetchQuestions();
             } catch (error) {
                 console.error('Erro ao excluir a questão:', error);
                 alert('Não foi possível excluir a questão. Tente novamente.');
