@@ -1,4 +1,5 @@
 const Question = require('../models/Question');
+const Simulate = require('../models/Simulate'); 
 
 exports.createQuestion = async (req, res) => {
     try {
@@ -46,5 +47,17 @@ exports.getQuestionById = async (req, res) => {
         res.status(200).json(question);
     } catch (error) {
         res.status(500).json({ message: error.message });
+    }
+};
+
+exports.generateSimulate = async (req, res) => {
+    try {
+        const { questions } = req.body;
+        const simulate = new Simulate({ questions });
+        await simulate.save();
+        console.log(simulate); // Log para verificar a criação
+        res.status(201).json({ link: `http://localhost:3000/simulate/${simulate._id}` }); 
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
 };

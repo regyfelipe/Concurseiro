@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado - Premium Question Layout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #4a4a4a;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .question-header {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+
+        .question-header .badge {
+            font-size: 0.8rem;
+            background-color: #343a40;
+            border-radius: 8px;
+            padding: 0.3rem 0.5rem;
+        }
+
+        .question-content {
+            font-size: 1.05rem;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        .answer-options .list-group-item {
+            border: none;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .answer-options .list-group-item:hover {
+            background-color: #f1f3f5;
+        }
+
+        .btn-answer {
+            background-color: #5a67d8;
+            border: none;
+            color: #ffffff;
+            padding: 0.6rem 1.5rem;
+            font-weight: 500;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-answer:hover {
+            background-color: #4c51bf;
+            transform: translateY(-2px);
+        }
+
+        .btn-answer:focus {
+            box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.3);
+        }
+
+        .response-card {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .response-card h5 {
+            margin-bottom: 1rem;
+        }
+
+        .response-card .response-item {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container my-5 d-flex">
+    <div class="card mx-auto" style="max-width: 700px; flex: 1;">
+        <div id="questions-container">
+            <% if (simulate.questions.length > 0) { %>
+                <% simulate.questions.forEach((question, index) => { %>
+                    <div class="question-header">
+                        <span class="badge">Q<%= question.codigo %></span>
+                        <span class="ms-2"><%= question.disciplina %> </span>
+                        <div class="text-muted">
+                            <!-- <small>Ano: <%= question.ano %> &nbsp; | &nbsp; Banca: <%= question.banca %> &nbsp; | &nbsp; Órgão: <%= question.instituicao %></small> -->
+                        </div>
+                    </div>
+                    
+                    <div class="question-content mb-4">
+                        <p><%= question.textoAux || "" %></p>
+                        <h6><%= question.pergunta %></h6>
+                    </div>
+                    
+                    <div class="answer-options list-group mb-4">
+                        <% question.alternatives.forEach((alt, altIndex) => { %>
+                            <label class="list-group-item d-flex align-items-center">
+                                <input class="form-check-input me-2" type="radio" name="answer<%= question._id %>" value="<%= alt.label %>" onchange="updateResponse('<%= question._id %>', '<%= String.fromCharCode(65 + altIndex) %>')"> <!-- 65 é o código ASCII para 'A' -->
+                                <span><%= alt.label %>: <%= alt.text %></span>
+                            </label>
+                        <% }) %>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>Nenhuma questão disponível neste simulado.</p>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="response-card mx-4" style="width: 250px;">
+        <h5>Cartão de Resposta</h5>
+        <div id="response-container">
+            <% if (simulate.questions.length > 0) { %>
+                <% simulate.questions.forEach((question, index) => { %>
+                    <div class="response-item" id="response-item-<%= question._id %>">
+                        <strong><%= index + 1 %></strong>: <span id="response-answer-<%= question._id %>">-</span>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>Nenhuma resposta registrada.</p>
+            <% } %>
+        </div>
+        
+        <div class="text-center mt-3">
+            <button type="button" class="btn btn-answer" onclick="openModal()">Responder Simulado</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="nameModal" tabindex="-1" aria-labelledby="nameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="nameModalLabel">Nome Completo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="userName" class="form-control" placeholder="Digite seu nome completo" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="confirmSubmission()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Alert Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="alertModalLabel">Sucesso</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="alertMessage">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function updateResponse(questionId, selectedValue) {
+        const responseSpan = document.getElementById(`response-answer-${questionId}`);
+        responseSpan.textContent = selectedValue; 
+    }
+
+    function openModal() {
+        const modal = new bootstrap.Modal(document.getElementById('nameModal'));
+        modal.show();
+    }
+
+    function confirmSubmission() {
+        const userName = document.getElementById('userName').value;
+
+        if (userName.trim() === "") {
+            alert('Por favor, insira seu nome completo.');
+        } else {
+            const message = `Simulado respondido com sucesso! Nome: ${userName}`;
+            showAlert(message);
+            const modal = bootstrap.Modal.getInstance(document.getElementById('nameModal'));
+            modal.hide(); 
+        }
+    }
+
+    function showAlert(message) {
+        document.getElementById('alertMessage').textContent = message; 
+        const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
+        alertModal.show(); 
+    }
+</script>
+</body>
+</html>

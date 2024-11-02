@@ -7,5 +7,7 @@ router.get('/questions', questionController.getQuestions);
 router.get('/questions/:id', questionController.getQuestionById);
 router.put('/questions/:id', questionController.updateQuestion);
 router.delete('/questions/:id', questionController.deleteQuestion);
+router.post('/simulate', questionController.generateSimulate);
+
 
 module.exports = router;

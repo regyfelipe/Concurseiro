@@ -1,128 +1,81 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulado de Questões</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="aside.css">in
-    <style>
-       
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        h5 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .card {
-            background-color: #ffffff;
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            margin-bottom: 1rem;
-        }
-        .question-header {
-            font-size: 0.9rem;
-            color: #6c757d;
-            margin-bottom: 1rem;
-        }
-        .question-header .badge {
-            font-size: 0.8rem;
-            background-color: #343a40;
-            border-radius: 8px;
-            padding: 0.3rem 0.5rem;
-        }
-        .question-content {
-            font-size: 1.05rem;
-            color: #333333;
-            line-height: 1.6;
-        }
-        .question-content ol {
-            margin-top: 0.5rem;
-            padding-left: 1.2rem;
-        }
-        .answer-options .list-group-item {
-            border: none;
-            border-radius: 10px;
-            padding: 0.75rem 1rem;
-            transition: background-color 0.3s ease;
-        }
-        .answer-options .list-group-item:hover {
-            background-color: #f1f3f5;
-        }
-        .answer-options input[type="radio"] {
-            accent-color: #5a67d8;
-        }
-        .btn-answer {
-            background-color: #5a67d8;
-            border: none;
-            color: #ffffff;
-            padding: 0.6rem 1.5rem;
-            font-weight: 500;
-            border-radius: 25px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        .btn-answer:hover {
-            background-color: #4c51bf;
-            transform: translateY(-2px);
-        }
-        .btn-answer:focus {
-            box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.3);
-        }
-    </style>
+    <link rel="stylesheet" href="aside.css">
 </head>
+
 <body>
     <header class="header">
         <div class="logo-container">
             <img src="./images/logo.png" alt="Logo" class="logo">
         </div>
-        <!-- Menu de Navegação -->
         <nav class="nav-menu" id="nav-menu">
-            <a href="/" class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-patch-question-fill" viewBox="0 0 16 16">
-                    <path d="M5.933.87a2.89 2.89 0 0 1 4.134 0l.622.638.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01zM7.002 11a1 1 0 1 0 2 0 1 1 0 0 0-2 0m1.602-2.027c.04-.534.198-.815.846-1.26.674-.475 1.05-1.09 1.05-1.986 0-1.325-.92-2.227-2.262-2.227-1.02 0-1.792.492-2.1 1.29A1.7 1.7 0 0 0 6 5.48c0 .393.203.64.545.64.272 0 .455-.147.564-.51.158-.592.525-.915 1.074-.915.61 0 1.03.446 1.03 1.084 0 .563-.208.885-.822 1.325-.619.433-.926.914-.926 1.64v.111c0 .428.208.745.585.745.336 0 .504-.24.554-.627"/>
-                </svg>
-                Criar Questões
-            </a>
+            <a href="/" class="nav-link">Criar Questões</a>
             <a href="/view-questions" class="nav-link">Ver Questões</a>
             <a href="/create-simulate" class="nav-link">Criar Simulados</a>
             <a href="/profile" class="nav-link">Perfil</a>
         </nav>
-        <!-- Ícone de Menu Hamburguer -->
         <div class="hamburger-menu" onclick="toggleMenu()">
             <div></div>
             <div></div>
             <div></div>
         </div>
     </header>
-    
-    <!-- Utilizando container-fluid para 100% da largura da tela -->
+
     <div class="container-fluid my-5 p-0">
-        <div class="row g-0"> <!-- Removendo o espaçamento entre colunas -->
-            <!-- Cada coluna ocupa 50% da largura da tela grande (>= lg) e 100% em telas menores -->
+        <div class="row g-0">
             <div class="col-lg-6 col-md-6 col-12 mb-4">
                 <div class="p-4 bg-white rounded shadow-sm h-100">
                     <h5 class="text-primary mb-3">Questões Disponíveis</h5>
-                    <div id="questions-list" class="list-group overflow-auto" style="max-height: 750px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);"></div>
+                    <div id="questions-list" class="list-group overflow-auto"
+                        style="max-height: 750px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);"></div>
                 </div>
             </div>
-            
+
             <div class="col-lg-6 col-md-6 col-12 mb-4">
                 <div class="p-4 bg-white rounded shadow-sm h-100">
                     <h5 class="text-primary mb-3">Questões Selecionadas</h5>
-                    <div id="selected-questions-container" class="list-group overflow-auto" style="max-height: 750px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);"></div>
+                    <div class="text-end mb-3">
+                        <button id="generate-simulate-btn" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#simulateModal">Gerar Simulado</button>
+                    </div>
+
+                    <div id="selected-questions-container" class="list-group overflow-auto"
+                        style="max-height: 750px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);"></div>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <div class="modal fade" id="simulateModal" tabindex="-1" aria-labelledby="simulateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="simulateModalLabel">Simulado Gerado!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Seu simulado foi gerado com sucesso. Você pode copiar o link abaixo e enviá-lo para outras
+                        pessoas:</p>
+                    <input id="simulate-link" class="form-control" type="text" value="" readonly>
+                    <button id="copy-link-btn" class="btn btn-secondary mt-3">Copiar Link</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
+        let selectedQuestions = [];
+
         async function fetchQuestions() {
             try {
                 const response = await fetch('/api/questions');
@@ -167,6 +120,8 @@
                 return;
             }
 
+            selectedQuestions.push(question);
+
             const selectedQuestionItem = document.createElement('div');
             selectedQuestionItem.className = 'card mx-auto';
             selectedQuestionItem.style.maxWidth = '700px';
@@ -198,7 +153,47 @@
             selectedQuestionsContainer.appendChild(selectedQuestionItem);
         }
 
+        document.getElementById('generate-simulate-btn').addEventListener('click', async () => {
+            if (selectedQuestions.length === 0) {
+                alert('Nenhuma questão selecionada para gerar o simulado!');
+                return;
+            }
+
+            // Enviar as questões selecionadas para o backend
+            try {
+                const response = await fetch('/api/simulate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ questions: selectedQuestions.map(q => q._id) })
+                });
+
+                if (!response.ok) throw new Error('Erro ao gerar o simulado');
+
+                const data = await response.json();
+                // Atualizar o link no campo de entrada do modal
+                document.getElementById('simulate-link').value = data.link;
+
+            } catch (error) {
+                console.error(error);
+                alert('Erro ao gerar o simulado');
+            }
+        });
+
+        // Função para copiar o link
+        document.getElementById('copy-link-btn').addEventListener('click', () => {
+            const linkInput = document.getElementById('simulate-link');
+            linkInput.select();
+            document.execCommand('copy');
+            alert('Link copiado para a área de transferência!');
+        });
+
         document.addEventListener('DOMContentLoaded', fetchQuestions);
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
