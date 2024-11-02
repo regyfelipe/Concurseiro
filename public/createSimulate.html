@@ -159,7 +159,6 @@
                 return;
             }
 
-            // Enviar as questões selecionadas para o backend
             try {
                 const response = await fetch('/api/simulate', {
                     method: 'POST',
@@ -172,7 +171,6 @@
                 if (!response.ok) throw new Error('Erro ao gerar o simulado');
 
                 const data = await response.json();
-                // Atualizar o link no campo de entrada do modal
                 document.getElementById('simulate-link').value = data.link;
 
             } catch (error) {
@@ -181,7 +179,6 @@
             }
         });
 
-        // Função para copiar o link
         document.getElementById('copy-link-btn').addEventListener('click', () => {
             const linkInput = document.getElementById('simulate-link');
             linkInput.select();
@@ -191,7 +188,12 @@
 
         document.addEventListener('DOMContentLoaded', fetchQuestions);
     </script>
-
+<script>
+        function toggleMenu() {
+        const navMenu = document.getElementById('nav-menu');
+        navMenu.classList.toggle('open'); 
+    }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
