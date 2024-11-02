@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Question Layout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Premium styling */
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #4a4a4a;
+        }
+        
+        .card {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .question-header {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+
+        .question-header .badge {
+            font-size: 0.8rem;
+            background-color: #343a40;
+            border-radius: 8px;
+            padding: 0.3rem 0.5rem;
+        }
+
+        .question-content {
+            font-size: 1.05rem;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        .question-content ol {
+            margin-top: 0.5rem;
+            padding-left: 1.2rem;
+        }
+
+        .answer-options .list-group-item {
+            border: none;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .answer-options .list-group-item:hover {
+            background-color: #f1f3f5;
+        }
+
+        .answer-options input[type="radio"] {
+            accent-color: #5a67d8;
+        }
+
+        .btn-answer {
+            background-color: #5a67d8;
+            border: none;
+            color: #ffffff;
+            padding: 0.6rem 1.5rem;
+            font-weight: 500;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-answer:hover {
+            background-color: #4c51bf;
+            transform: translateY(-2px);
+        }
+
+        .btn-answer:focus {
+            box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container my-5">
+    <!-- Card Layout for Premium UI -->
+    <div class="card mx-auto" style="max-width: 700px;">
+        <!-- Header Section -->
+        <div class="question-header">
+            <span class="badge">Q3059305</span>
+            <span class="ms-2">Direito Tributário &raquo; Legislação do Direito Tributário</span>
+            <div class="text-muted">
+                <small>Ano: 2024 &nbsp; | &nbsp; Banca: FEPPESE &nbsp; | &nbsp; Órgão: Prefeitura de Mafra - SC</small>
+            </div>
+        </div>
+
+        <!-- Question Content -->
+        <div class="question-content mb-4">
+            <p>
+                A respeito dos conhecimentos sobre as competências tributárias, é correto afirmar que instituir a contribuição para o custeio, 
+                a expansão e a melhoria do serviço de iluminação pública e de sistemas de monitoramento para segurança e preservação de logradouros públicos, 
+                é de competência:
+            </p>
+            <ol>
+                <li>Dos Municípios.</li>
+                <li>Dos Estados.</li>
+                <li>Do Distrito Federal.</li>
+                <li>Da União.</li>
+            </ol>
+            <p>Assinale a alternativa que indica todas as afirmativas <strong>corretas</strong>.</p>
+        </div>
+
+        <!-- Answer Options -->
+        <div class="answer-options list-group mb-4">
+            <label class="list-group-item d-flex align-items-center">
+                <input class="form-check-input me-2" type="radio" name="answer" value="A">
+                <span>A. São corretas apenas as afirmativas 1 e 3.</span>
+            </label>
+            <label class="list-group-item d-flex align-items-center">
+                <input class="form-check-input me-2" type="radio" name="answer" value="B">
+                <span>B. São corretas apenas as afirmativas 2 e 3.</span>
+            </label>
+            <label class="list-group-item d-flex align-items-center">
+                <input class="form-check-input me-2" type="radio" name="answer" value="C">
+                <span>C. São corretas apenas as afirmativas 2 e 4.</span>
+            </label>
+            <label class="list-group-item d-flex align-items-center">
+                <input class="form-check-input me-2" type="radio" name="answer" value="D">
+                <span>D. São corretas apenas as afirmativas 1, 2 e 4.</span>
+            </label>
+            <label class="list-group-item d-flex align-items-center">
+                <input class="form-check-input me-2" type="radio" name="answer" value="E">
+                <span>E. São corretas apenas as afirmativas 1, 3 e 4.</span>
+            </label>
+        </div>
+
+        <!-- Button -->
+        <div class="text-end">
+            <button type="button" class="btn btn-answer">Responder</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -18,6 +18,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', questionRoutes);
 
 
+app.get('/create-simulate', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'createSimulate.html'));
+});
+
 app.get('/view-questions', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'question.html'));
 });
