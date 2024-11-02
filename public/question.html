@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,6 @@
     <link rel="stylesheet" href="styles.css">
 
     <style>
-
         .sidebar {
             width: 200px;
             background-color: #f8f9fa;
@@ -20,65 +20,101 @@
             border-right: 1px solid #dee2e6;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
-        
+
         .sidebar .logo {
-            max-width: 100px;
+            max-width: 150px;
             margin-bottom: 20px;
         }
-        
+
         .sidebar .nav-link {
             font-size: 1rem;
             color: #333;
             margin-bottom: 15px;
             padding: 10px 15px;
+
+            font-weight: bold;
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
-        
+
+
         .sidebar .nav-link:hover {
             background-color: #e9ecef;
             border-radius: 5px;
         }
-        
+
         .main-content {
             margin-left: 200px;
             width: calc(100% - 200px);
             padding: 20px;
         }
-        
-        </style>
-        
-        <body>
-        
-            <aside class="sidebar">
-                <div class="text-center mb-4">
-                    <img src="path/to/your/logo.svg" alt="Logo" class="logo img-fluid">
-                </div>
-                <nav class="nav flex-column">
-                    <a href="/" class="nav-link">Criar Questões</a>
-                    <a href="/view-questions" class="nav-link">Ver Questões</a>
-                </nav>
-                
-            </aside>
+    </style>
+
 <body>
-    <div class="container mt-5">
-        <h3 class="text-center mb-4">Visualização das Questões</h3>
-        <div id="questions-container" class="row">
+
+    <aside class="sidebar">
+        <div class="text-center mb-4">
+            <img src="./images/logo.png" alt="Logo" class="logo img-fluid">
         </div>
-    </div>
+        <nav class="nav flex-column ">
+            <a href="/" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-patch-question-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M5.933.87a2.89 2.89 0 0 1 4.134 0l.622.638.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01zM7.002 11a1 1 0 1 0 2 0 1 1 0 0 0-2 0m1.602-2.027c.04-.534.198-.815.846-1.26.674-.475 1.05-1.09 1.05-1.986 0-1.325-.92-2.227-2.262-2.227-1.02 0-1.792.492-2.1 1.29A1.7 1.7 0 0 0 6 5.48c0 .393.203.64.545.64.272 0 .455-.147.564-.51.158-.592.525-.915 1.074-.915.61 0 1.03.446 1.03 1.084 0 .563-.208.885-.822 1.325-.619.433-.926.914-.926 1.64v.111c0 .428.208.745.585.745.336 0 .504-.24.554-.627" />
+                </svg>
+                Criar Questões
+            </a>
+            <a href="/view-questions" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-cc-circle" viewBox="0 0 16 16">
+                    <path
+                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.408 5.89c-.83 0-1.318.64-1.318 1.753v.742c0 1.108.479 1.727 1.318 1.727.69 0 1.138-.435 1.187-1.05h1.147v.114c-.058 1.147-1.029 1.938-2.343 1.938-1.612 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.75 2.518-2.75 1.319 0 2.29.812 2.343 1.999v.11H6.595c-.049-.638-.506-1.108-1.187-1.108Zm5.404 0c-.831 0-1.319.64-1.319 1.753v.742c0 1.108.48 1.727 1.319 1.727.69 0 1.138-.435 1.186-1.05h1.147v.114c-.057 1.147-1.028 1.938-2.342 1.938-1.613 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.75 2.518-2.75 1.318 0 2.29.812 2.342 1.999v.11h-1.147c-.048-.638-.505-1.108-1.186-1.108Z" />
+                </svg>
+                Ver Questões
+            </a>
+            <a href="/create-simulate" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-cc-circle" viewBox="0 0 16 16">
+                    <path
+                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.408 5.89c-.83 0-1.318.64-1.318 1.753v.742c0 1.108.479 1.727 1.318 1.727.69 0 1.138-.435 1.187-1.05h1.147v.114c-.058 1.147-1.029 1.938-2.343 1.938-1.612 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.75 2.518-2.75 1.319 0 2.29.812 2.343 1.999v.11H6.595c-.049-.638-.506-1.108-1.187-1.108Zm5.404 0c-.831 0-1.319.64-1.319 1.753v.742c0 1.108.48 1.727 1.319 1.727.69 0 1.138-.435 1.186-1.05h1.147v.114c-.057 1.147-1.028 1.938-2.342 1.938-1.613 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.75 2.518-2.75 1.318 0 2.29.812 2.342 1.999v.11h-1.147c-.048-.638-.505-1.108-1.186-1.108Z" />
+                </svg>
+                Criar Simulados
+            </a>
+            <a href="/profile" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-cc-circle" viewBox="0 0 16 16">
+                    <path
+                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.408 5.89c-.83 0-1.318.64-1.318 1.753v.742c0 1.108.479 1.727 1.318 1.727.69 0 1.138-.435 1.187-1.05h1.147v.114c-.058 1.147-1.029 1.938-2.343 1.938-1.612 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.75 2.518-2.75 1.319 0 2.29.812 2.343 1.999v.11H6.595c-.049-.638-.506-1.108-1.187-1.108Zm5.404 0c-.831 0-1.319.64-1.319 1.753v.742c0 1.108.48 1.727 1.319 1.727.69 0 1.138-.435 1.186-1.05h1.147v.114c-.057 1.147-1.028 1.938-2.342 1.938-1.613 0-2.518-1.028-2.518-2.729v-.747c0-1.7.914-2.75 2.518-2.75 1.318 0 2.29.812 2.342 1.999v.11h-1.147c-.048-.638-.505-1.108-1.186-1.108Z" />
+                </svg>
+                Perfil
+            </a>
+        </nav>
 
-    <script>
-        async function fetchQuestions() {
-            try {
-                const response = await fetch('/api/questions');
-                if (!response.ok) throw new Error('Network response was not ok');
-                const questions = await response.json();
+    </aside>
 
-                const questionsContainer = document.getElementById('questions-container');
-                questionsContainer.innerHTML = '';
+    <body>
+        <div class="container mt-5">
+            <h3 class="text-center mb-4">Visualização das Questões</h3>
+            <div id="questions-container" class="row">
+            </div>
+        </div>
 
-                questions.forEach(question => {
-                    const questionCard = document.createElement('div');
-                    questionCard.className = "col-md-6 mb-4";
-                    questionCard.innerHTML = `
+        <script>
+            async function fetchQuestions() {
+                try {
+                    const response = await fetch('/api/questions');
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    const questions = await response.json();
+
+                    const questionsContainer = document.getElementById('questions-container');
+                    questionsContainer.innerHTML = '';
+
+                    questions.forEach(question => {
+                        const questionCard = document.createElement('div');
+                        questionCard.className = "col-md-6 mb-4";
+                        questionCard.innerHTML = `
                         <div class="card border-primary">
                             <div class="card-body">
                                 <h5 class="card-title text-primary">${question.disciplina} | ${question.assunto} | ${question.banca} | ${question.instituicao} | ${question.nivel}</h5>
@@ -99,14 +135,15 @@
                             </div>
                         </div>
                     `;
-                    questionsContainer.appendChild(questionCard);
-                });
-            } catch (error) {
-                console.error('Erro ao buscar as questões:', error);
+                        questionsContainer.appendChild(questionCard);
+                    });
+                } catch (error) {
+                    console.error('Erro ao buscar as questões:', error);
+                }
             }
-        }
 
-        document.addEventListener('DOMContentLoaded', fetchQuestions);
-    </script>
-</body>
+            document.addEventListener('DOMContentLoaded', fetchQuestions);
+        </script>
+    </body>
+
 </html>
