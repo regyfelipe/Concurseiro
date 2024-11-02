@@ -56,7 +56,7 @@ exports.generateSimulate = async (req, res) => {
         const simulate = new Simulate({ questions });
         await simulate.save();
         console.log(simulate); // Log para verificar a criação
-        res.status(201).json({ link: `http://localhost:3000/simulate/${simulate._id}` }); 
+        res.status(201).json({ link: `https://concurseiro.onrender.com/simulate/${simulate._id}` }); 
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
